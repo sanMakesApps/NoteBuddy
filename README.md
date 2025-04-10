@@ -1,12 +1,36 @@
-# React + Vite
+# NoteBuddy 🎤✍️
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**NoteBuddy** is an AI-powered note-taking assistant that transcribes your speech in real-time using WebSocket streaming and converts it into structured notes using AI models. Perfect for meetings, lectures, or brainstorming sessions!
 
-Currently, two official plugins are available:
+## ✨ Features
+- 🎙️ **Real-time speech-to-text** via AudioContext
+- 🔌 **WebSocket streaming** for low-latency transcription
+- 🤖 **AI-powered summarization** to convert speech into useful notes
+- 📝 **Editable transcripts** with markdown support
+- 💾 **Save & export** notes as text files
+- 🎨 **Clean UI** built with TailwindCSS
+- ⚛️ **React** frontend with hooks for state management
+- 🚀 **Node/Express** backend with WebSocket server
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠 Tech Stack
+| Component       | Technology |
+|-----------------|------------|
+| Frontend        | React, TailwindCSS, WebSocket Client |
+| Backend         | Node.js, Express, WebSocket Server |
+| Audio Processing| Web Audio API, MediaRecorder |
 
-## Expanding the ESLint configuration
+   ![Screenshot1 of NoteBuddy](/assets/Capture1.PNG)
+   ![Screenshot2 of NoteBuddy](/assets/Capture2.PNG)
+   ![Screenshot3 of NoteBuddy](/assets/Capture3.PNG)
+   ![Screenshot4 of NoteBuddy](/assets/Capture4.PNG)
+## 🚀 Getting Started
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Prerequisites
+- Node.js v16+
+- npm/yarn
+
+### Installation
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/sanMakesApps/NoteBuddy.git
+   cd NoteBuddy
