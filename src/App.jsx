@@ -6,6 +6,12 @@ import Transcript from "./components/Transcript/Transcript";
 function App() {
   const [isRecording, setIsRecording] = useState(false);
   const [isReporting, setIsReporting] = useState(false);
+  const [transcript, setTranscript] = useState("");
+  const [report, setReport] = useState("");
+
+  const handleTranscriptUpdate = (newTranscript) => {
+    setTranscript((prevTranscript) => prevTranscript + newTranscript);
+  };
 
   return (
     <div
@@ -26,7 +32,7 @@ function App() {
                 isReporting ? "flex-1" : "w-full max-w-[800px] text-center"
               }`}
             >
-              <Transcript />
+              <Transcript transcript={transcript} />
             </div>
 
             {isReporting && (
@@ -47,6 +53,9 @@ function App() {
         setIsRecording={setIsRecording}
         isReporting={isReporting}
         setIsReporting={setIsReporting}
+        onTranscriptUpdate={handleTranscriptUpdate}
+        transcript={transcript}
+        setReport={setReport}
       />
     </div>
   );
