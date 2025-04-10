@@ -1,55 +1,68 @@
-// ICONS
-import GenerateRecordIcon from "./components/icons/GenerateRecordIcon";
-import MicIcon from "./components/icons/Mic";
-import PlayIcon from "./components/icons/Play";
-import Setting from "./components/icons/Setting";
+import { useState } from "react";
+import ControlPanel from "./components/ControlPanel/ControlPanel";
+import Report from "./components/Report/Report";
+import Transcript from "./components/Transcript/Transcript";
 
 function App() {
+  const [isRecording, setIsRecording] = useState(false);
+  const [isReporting, setIsReporting] = useState(false);
+
   return (
-    <div className="fixed inset-0 flex flex-col justify-end pointer-events-none bg-gray-200">
-      <div className="flex-1 flex items-center justify-center">
-        {/* TRANSCRIBE & RECORDS - Row Layout */}
-        <div className="flex gap-8">
-          {/* Adjust gap as needed */}
-          {/* TRANSCRIBE */}
-          <div className="bg-white p-6 rounded-lg shadow-md min-w-[300px]">
-            TRANSCRIBE TEXT
+    <div
+      id="homeContainer"
+      className="fixed inset-0 flex flex-col justify-center bg-gray-200"
+    >
+      <div id="canvas" className="flex-1 flex items-center justify-center">
+        {isRecording ? (
+          <div
+            id="record"
+            className={`flex ${
+              isReporting ? "gap-4" : ""
+            } w-full max-w-[1200px] items-center justify-center`}
+          >
+            {/* Transcript will be centered when alone, take half width when with Report */}
+            <div
+              id="transcript"
+              className={`${
+                isReporting ? "flex-1" : "w-full max-w-[800px] text-center"
+              }`}
+            >
+              <Transcript />
+            </div>
+
+            {/* Report will animate in/out and take half width when present */}
+            {isReporting && (
+              <div id="report" className="flex-1">
+                <Report />
+              </div>
+            )}
           </div>
-          {/* RECORDS */}
-          <div className="bg-white p-6 rounded-lg shadow-md min-w-[300px]">
-            RECORDS
-          </div>
-        </div>
+        ) : (
+          <label className="text-gray-500">
+            Start recording to transcribe notes and create reports.
+          </label>
+        )}
       </div>
-
-      {/* CONSOLE */}
-      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 w-11/12 max-w-4xl bg-white p-4 rounded-lg shadow-md border border-gray-200">
-        <div className="flex justify-between items-center space-x-2">
-          {/* Left side buttons */}
-          <div className="flex space-x-2">
-            {/* IMPLEMENTATION IDEA: I CAN EITHER DISABLE PLAY BUTTON UNTIL SOMETHING IS RECORDED OR I CAN USE STATE TO TOGGLE BETWEEN RECORDING AND PLAYING */}
-            <button className="px-3 py-1.5 bg-rose-500 hover:bg-gray-200 rounded text-sm font-medium transition-colors">
-              <MicIcon className="fill-white" />
-            </button>
-            <button className="px-3 py-1.5 bg-blue-500 hover:bg-blue-600 rounded text-sm font-medium transition-colors">
-              <PlayIcon className="fill-white" />
-            </button>
-          </div>
-
-          {/* Center status/info */}
-          <div className="text-xs text-gray-500">Ready To Transcribe</div>
-
-          {/* Right side buttons */}
-          <div className="flex space-x-2">
-            <button className="px-3 py-1.5 bg-blue-500 hover:bg-blue-600 text-white rounded text-sm font-medium transition-colors">
-              <GenerateRecordIcon />
-            </button>
-            <button className="px-3 py-1.5 bg-gray-100 hover:bg-gray-200 rounded text-sm font-medium transition-colors">
-              <Setting />
-            </button>
-          </div>
-        </div>
-      </div>
+      {/* <button
+        onClick={() => {
+          setIsReporting(!isReporting);
+        }}
+      >
+        REPORT
+      </button>
+      <button
+        onClick={() => {
+          setIsRecording(!isRecording);
+        }}
+      >
+        RECORD
+      </button> */}
+      <ControlPanel
+        isRecording={isRecording}
+        setIsRecording={setIsRecording}
+        isReporting={isReporting}
+        setIsReporting={setIsReporting}
+      />
     </div>
   );
 }
