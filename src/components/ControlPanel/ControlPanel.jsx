@@ -10,6 +10,7 @@ import Stop from "../icons/Stop";
 import ToolTip from "../ToolTip/ToolTip";
 import { startStreaming, stopStreaming } from "../../services/audioService";
 import { generateReport } from "../../services/reportService";
+import { saveTranscript } from "../../util/SaveTranscript";
 
 const ControlPanel = ({
   isRecording,
@@ -35,6 +36,10 @@ const ControlPanel = ({
     setIsReporting(!isReporting);
     const reportData = await generateReport(transcript);
     setReport(reportData.report);
+  };
+
+  const handleSave = () => {
+    saveTranscript(transcript);
   };
 
   return (
@@ -78,8 +83,11 @@ const ControlPanel = ({
           </ToolTip>
 
           <ToolTip noteText="Save current recording" position="top">
-            <button className="p-2 bg-gray-100 hover:bg-gray-200 rounded transition-colors">
-              <SaveIcon  className="w-5 h-5" />
+            <button
+              onClick={handleSave}
+              className="p-2 bg-gray-100 hover:bg-gray-200 rounded transition-colors"
+            >
+              <SaveIcon className="w-5 h-5" />
             </button>
           </ToolTip>
 
